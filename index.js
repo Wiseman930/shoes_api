@@ -33,6 +33,10 @@ app.use(
       saveUninitialized: true,
     })
   );
+  app.use(flash());
+  app.use(express.static("public"));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
 
   const myShoes = require('./routes/shoeRoute')
   const theShoes = myShoes(myShoeFunction)

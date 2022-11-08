@@ -9,7 +9,114 @@
     <title>Document</title>
 </head>
 <body>
-    <img> 
+    <div class="logo">
+    <img src="https://github.com/Wiseman930/shoes_api/blob/master/images/BILLY.png?raw=true" alt="no image" class="logo_image">
+    </div>
+    <div class="all_add_stock">
+        <div class="new_stock"><h3>Add New Stock</h3></div>
+        <div class="add_stock">
+            <div class="drop1">
+                <select name="brands" id="brands">
+                    <option value="">Select Brand</option>
+                    <option value="tago">Tago</option>
+                    <option value="bellito">Bellito</option>
+                    <option value="afani">Afani</option>
+                    <option value="seruto">Seruto</option>
+                </select>
+            </div>
+            <div class="drop2">
+                <select name="color" id="color">
+                    <option value="">Select Color</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="blue">Blue</option>
+                    <option value="brown">Brown</option>
+                    <option value="grey">Grey</option>
+                </select>
+            </div>
+            <div class="drop3">
+                <select name="size" id="size">
+                    <option value="">Select Size</option>
+                    <option value=5 >5</option>
+                    <option value=6 >6</option>
+                    <option value=7 >7</option>
+                    <option value=8 >8</option>
+                    <option value=9 >9</option>
+                </select>
+            </div>
+        </div>
+        <div class="add_stock2">
+            <div class="price_textbox">
+                <input name="price" class="addPrice" placeholder="Enter price"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type="number" maxlength="7" value="price">
+            </div>
+            <div class="quantity_textbox">
+                <input name="quantity" class="addQuantity" placeholder="Enter Quantity"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type="number" maxlength="2" value="quantity">
+            </div>
+        </div>
+        <div class="update_button">
+            <input type="submit" name="fontSizeControl" class="update_stock" value="update">
+        </div>
+    </div>
 
+
+     <div class="all_add_stock">
+        <div class="new_stock"><h3>Filter Stock</h3></div>
+        <div class="filter_stock">
+            <div class="drop1">
+                <select name="brands" id="brands">
+                    <option value="">Select Brand</option>
+                    <option value="tago">Tago</option>
+                    <option value="bellito">Bellito</option>
+                    <option value="afani">Afani</option>
+                    <option value="seruto">Seruto</option>
+                </select>
+            </div>
+            <div class="drop2">
+                <select name="color" id="color">
+                    <option value="">Select Color</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="blue">Blue</option>
+                    <option value="brown">Brown</option>
+                    <option value="grey">Grey</option>
+                </select>
+            </div>
+            <div class="drop3">
+                <select name="size" id="size">
+                    <option value="">Select Size</option>
+                    <option value=5 >5</option>
+                    <option value=6 >6</option>
+                    <option value=7 >7</option>
+                    <option value=8 >8</option>
+                    <option value=9 >9</option>
+                </select>
+            </div>
+            <div class="update_button">
+                <input type="submit" name="fontSizeControl" class="update_stock" value="filter">
+            </div>
+        </div>
+        <div class="display_filtered1">
+            <div class="show_brands"><h3>Brands</h3></div>
+            <div class="show_color"><h3>Color</h3></div>
+            <div class="show_size"><h3>Size</h3></div>
+            <div class="show_price"><h3>Price</h3></div>
+            <div class="show_quantity"><h3>Quantity</h3></div>
+            <div class="show_image"><h3></h3></div>
+            <div class="show_cart"><h3></h3></div>
+        </div>
+            <div class="display_filtered2">
+            <div class="show_brands"><p>Tago</p></div>
+            <div class="show_color"><p>Blue</p></div>
+            <div class="show_size"><p>7</p></div>
+            <div class="show_price"><p>R300.00</p></div>
+            <div class="show_quantity"><p>Quantity</p></div>
+            <div class="show_image"><p></p></div>
+            <div class="show_cart"><p></p></div>
+        </div>
+    </div>
 </body>
 </html>
