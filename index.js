@@ -12,7 +12,7 @@ let local = process.env.LOCAL || false;
 if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
-const DATABASE_URL = process.env.DATABASE_URL || "postgresql://postgres:pg1999@localhost:5432/waiter";
+const DATABASE_URL = process.env.DATABASE_URL || "postgresql://postgres:pg1999@localhost:5432/shoe_api";
 
 const config = {
   connectionString: DATABASE_URL,
@@ -33,6 +33,13 @@ app.use(
       saveUninitialized: true,
     })
   );
+
+  function errorHandler(err, req, res, next) {
+    res.status(500);
+    res.render('error', { error: err });
+  }
+  app.use(errorHandler);
+
   app.use(flash());
   app.use(express.static("public"));
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +49,8 @@ app.use(
   const theShoes = myShoes(myShoeFunction)
 
   app.get('/', theShoes.homeFunction);
+  app.post('/shoes', theShoes.addStockFunction);
+  app.post('/shoes/stock', theShoes.filterStock);
 
 let PORT = process.env.PORT || 3018;
 
