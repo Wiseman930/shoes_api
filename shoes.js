@@ -43,10 +43,3 @@ module.exports = function ShoeApi(db){
     }
 }
 
-/*
-https://github.com/Wiseman930/shoes_api/blob/master/images/black.jpg
-https://github.com/Wiseman930/shoes_api/blob/master/images/blue.jpg
-https://github.com/Wiseman930/shoes_api/blob/master/images/brown.jpg
-https://github.com/Wiseman930/shoes_api/blob/master/images/grey.jpg
-https://github.com/Wiseman930/shoes_api/blob/master/images/white.jpg
-*/
