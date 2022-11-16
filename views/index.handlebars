@@ -8,6 +8,125 @@
     <link href='https://fonts.googleapis.com/css?family=Gruppo' rel='stylesheet'>
     <script src="/path/to/flash.min.js"></script>
     <title>Document</title>
+    <style>
+       body{
+    background-color: #ffffff;
+    font-family: 'Gruppo';font-size: 22px;
+}
+.new_stock{
+    text-align: center;
+    color: #ffffff;
+}
+.logo_image{
+    display: block;
+    margin: auto;
+    width: 250px;
+}
+.logo{
+    margin-bottom: 60px;
+}
+.add_stock{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 30px;
+    text-align: center;
+    color: black;
+}
+.add_stock2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 30px;
+    text-align: center;
+    color: black;
+}
+.all_add_stock{
+    width: 60%;
+    background-color: #e9d8a6;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 30px;
+}
+.update_button{
+    text-align: center;
+    margin:auto;
+}
+.filter_stock{
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 1fr;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.display_filtered1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 3fr 1fr;
+    text-align: center;
+}
+.display_filtered2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 3fr 1fr;
+    text-align: center;
+}
+.shoe_images{
+    width: 130px;
+    height: 130px;
+}
+hr{
+    background-color: black;
+}
+h3{
+    color: black;
+}
+input[type=number]{
+    width: 150px;
+    height: 45px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: 'Gruppo';font-size: 18px;
+    font-weight: 600;
+    border-width: 0px;
+  }
+input[type=submit]{
+width: 110px;
+height: 45px;
+text-align: center;
+border-radius: 8px;
+background-color: #bb3e03;
+font-family: 'Gruppo';font-size: 18px;
+border-width: 0px;
+color: #ffffff;
+}
+#brands{
+width: 150px;
+height: 45px;
+text-align: center;
+font-family: 'Gruppo';font-size: 18px;
+background-color: #005f73;
+color: #ffffff;
+border-radius: 8px;
+border-width: 0px;
+}
+#color{
+width: 150px;
+height: 45px;
+text-align: center;
+font-family: 'Gruppo';font-size: 18px;
+background-color: #005f73;
+color: #ffffff;
+border-radius: 8px;
+border-width: 0px;
+}
+#size{
+width: 150px;
+height: 45px;
+text-align: center;
+font-family: 'Gruppo';font-size: 18px;
+background-color: #005f73;
+color:#ffffff;
+border-radius: 8px;
+
+}
+    </style>
 </head>
 <body>
     <div class="logo">
@@ -65,13 +184,12 @@
     </form>
     </div>
 
-
      <div class="all_add_stock">
         <div class="new_stock"><h3>Filter Stock</h3></div>
         <form method="POST" action="/shoes/stock">
         <div class="filter_stock">
             <div class="drop1">
-                <select name="brands" id="brands">
+                <select name="brands2" id="brands">
                         <option value="" style="background-color: #005f73; color: white">Select Brand</option>
                         <option value=1 style="background-color: #005f73; color: white">Tago</option>
                         <option value=2 style="background-color: #005f73; color: white">Bellito</option>
@@ -80,7 +198,7 @@
                 </select>
             </div>
             <div class="drop2">
-                <select name="colors" id="color">
+                <select name="colors2" id="color">
                         <option value="" style="background-color: #005f73; color: white">Select Color</option>
                         <option value=1  style="background-color: #005f73; color: white">Black</option>
                         <option value=5 style="background-color: #005f73; color: white">White</option>
@@ -90,7 +208,7 @@
                 </select>
             </div>
             <div class="drop3">
-                <select name="size" id="size">
+                <select name="size2" id="size">
                         <option value="" style="background-color: #005f73; color: white">Select Size</option>
                         <option value="1" style="background-color: #005f73; color: white">5</option>
                         <option value="2" style="background-color: #005f73; color: white" >6</option>
@@ -100,7 +218,7 @@
                 </select>
             </div>
             <div class="update_button">
-                <input type="submit" name="fontSizeControl" class="update_stock" value="Filter">
+                <input type="submit" name="fontSizeControl1" class="update_stock" value="Filter">
             </div>
         </div>
         </form>

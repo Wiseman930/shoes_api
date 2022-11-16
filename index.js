@@ -48,9 +48,16 @@ app.use(
   const myShoes = require('./routes/shoeRoute')
   const theShoes = myShoes(myShoeFunction)
 
+  const allShoesAPI = require('./api/shoeApi')
+  const shoesApi = allShoesAPI(myFunction)
+
   app.get('/', theShoes.homeFunction);
   app.post('/shoes', theShoes.addStockFunction);
   app.post('/shoes/stock', theShoes.filterStock);
+
+
+//API ROUTES
+app.get('/api/shoes', shoesApi.homeFunction);
 
 let PORT = process.env.PORT || 3018;
 

@@ -1,5 +1,6 @@
 module.exports = function ShoeApi(db){
-    let allStock ={};
+    let allStock;
+    let allmMyStock
 
     async function addStock(stock){
     let shoeColor =  stock.colors;
@@ -11,35 +12,49 @@ module.exports = function ShoeApi(db){
         VALUES ($1, $2, $3, $4, $5, $6)`, [stock.brands, stock.colors, stock.size, stock.prices, stock.quantities, imageId]);
         }
     }
-    async function allTheStock(){
-        allStock = await db.manyOrNone(`SELECT stock.id, brands.brand, colors.color, sizes.size, stock.price, stock.quantity, stockImages.image
+    async function allTheStock(brands, colors, size){
+
+
+        allmMyStock = await db.manyOrNone(`SELECT stock.id, brands.brand, colors.color, sizes.size, stock.price, stock.quantity, stockImages.image
         FROM stock
         INNER JOIN brands ON stock.brand_id = brands.id
         INNER JOIN colors ON stock.color_id = colors.id
         INNER JOIN sizes ON stock.size_id = sizes.id
         INNER JOIN stockImages on stock.image_id = stockImages.id`)
-    }
-    async function filter(filterBrand){
 
+        if(brands && !colors && !size){
         allStock = await db.manyOrNone(`SELECT stock.id, brands.brand, colors.color, sizes.size, stock.price, stock.quantity, stockImages.image
         FROM stock
         INNER JOIN brands ON stock.brand_id = brands.id
         INNER JOIN colors ON stock.color_id = colors.id
         INNER JOIN sizes ON stock.size_id = sizes.id
-        INNER JOIN stockImages on stock.image_id = stockImages.id WHERE stock.brand_id=$1`, [filterBrand])
+        INNER JOIN stockImages on stock.image_id = stockImages.id WHERE stock.brand_id=$1`, [brands])
+        }
+        if(!brands && colors  && !size){
+        allStock = await db.manyOrNone(`SELECT stock.id, brands.brand, colors.color, sizes.size, stock.price, stock.quantity, stockImages.image
+        FROM stock
+        INNER JOIN brands ON stock.brand_id = brands.id
+        INNER JOIN colors ON stock.color_id = colors.id
+        INNER JOIN sizes ON stock.size_id = sizes.id
+        INNER JOIN stockImages on stock.image_id = stockImages.id WHERE stock.color_id=$1`, [colors])
 
+        }
+    }
+    async function returnAll(){
+        let state;
+        if(allStock == undefined){
+            state = allmMyStock
+        }
+        else if (allStock !== undefined){
+            state = allStock
+        }
+        return state
     }
 
-
-    async function returnAllTheStock(){
-        console.log(allStock)
-        return allStock
-    }
     return {
         addStock,
         allTheStock,
-        returnAllTheStock,
-        filter
+        returnAll,
     }
 }
 

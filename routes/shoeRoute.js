@@ -1,10 +1,12 @@
 module.exports = function shoeRouteFunction(myShoeFunction){
 
     async function homeFunction(req, res, next){
+
         await myShoeFunction.allTheStock()
+
         try {
             res.render('index',{
-                allMyStock: await myShoeFunction.returnAllTheStock()
+                allMyStock: await myShoeFunction.returnAll()
                 }
             );
         } catch (err) {
@@ -18,12 +20,14 @@ module.exports = function shoeRouteFunction(myShoeFunction){
             let size = Number(req.body.size)
             let price = Number(req.body.prices)
             let quantity = Number(req.body.quantities)
+            let update = req.body.fontSizeControl;
 
-        if (brands != 0 && color != 0 && size != 0 && price != 0 && quantity != 0){
+
+        if (brands != 0 && color != 0 && size != 0 && price != 0 && quantity != 0 && update){
             await myShoeFunction.addStock(JSON.parse(JSON.stringify(req.body)))
             res.redirect("/");
         }
-        else if (brands == 0 || color == 0 || size == 0 || price == 0 || quantity == 0){
+        else if (brands == 0 || color == 0 || size == 0 || price == 0 || quantity == 0 && update){
             //flash error
             res.redirect("/");
         } else {
@@ -34,24 +38,19 @@ module.exports = function shoeRouteFunction(myShoeFunction){
         }
     }
 
-    async function filterStock(req, res, next){
+   async function filterStock(req, res, next){
         try {
-            let brands = (req.body.brands)
-            let color = (req.body.colors)
-            let size = (req.body.size)
-            let stock = JSON.parse(JSON.stringify(req.body));
-            let filterBrand = stock.brands || 0
+        let brands2 = Number(req.body.brands2)
+        let color2 = Number(req.body.colors2)
+        let size2 = Number(req.body.size2)
+        let filter = req.body.fontSizeControl1;
 
-        if (brands && !color  && !size){
-            await myShoeFunction.filter(filterBrand)
-            res.redirect("/");
+        if (filter){
+            await myShoeFunction.allTheStock(brands2, color2, size2)
+            // res.redirect("/");
         }
-        else if (brands == 0 || color == 0 || size == 0){
-            //flash error
+         if (brands2 == 0 || color2 == 0 || size2 == 0){
             res.redirect("/");
-        }
-         else {
-            res.redirect("/")
         }
         } catch (err) {
             next(err);
