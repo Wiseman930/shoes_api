@@ -49,7 +49,7 @@ app.use(
   const theShoes = myShoes(myShoeFunction)
 
   const allShoesAPI = require('./api/shoeApi')
-  const shoesApi = allShoesAPI(myFunction)
+  const shoesApi = allShoesAPI(myShoeFunction)
 
   app.get('/', theShoes.homeFunction);
   app.post('/shoes', theShoes.addStockFunction);

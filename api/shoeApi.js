@@ -1,8 +1,10 @@
 module.exports = function (shoeService) {
 
     async function homeFunction(req, res, next){
+
+        await shoeService.allTheStock()
         try {
-            let results = await shoeService.allTheStock()
+            let results = await shoeService.returnAll()
             res.json({
                 status: 'success',
                 data: results
@@ -12,11 +14,11 @@ module.exports = function (shoeService) {
             next(err);
         }
     }
+
+    
     async function addStockFunction(req, res, next){
         try {
-            
             await shoeService.addStock(JSON.parse(JSON.stringify(req.body)))
-
             res.json({
                 status: "success",
             });
