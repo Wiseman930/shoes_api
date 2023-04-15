@@ -53,15 +53,8 @@ const config = {
 const db = pgp(config);
 const myShoeFunction = myFunction(db)
 
-
-  const myShoes = require('./routes/shoeRoute')
-  const theShoes = myShoes(myShoeFunction)
-
-  const allShoesAPI = require('./api/shoeApi')
-  const shoesApi = allShoesAPI(myShoeFunction)
-
- // app.get('/', theShoes.homeFunction);
-
+const allShoesAPI = require('./api/shoeApi')
+const shoesApi = allShoesAPI(myShoeFunction)
 
 
 //API ROUTES
