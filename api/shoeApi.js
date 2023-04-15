@@ -1,10 +1,8 @@
-module.exports = function (shoeService) {
+module.exports = function(shoeService) {
 
     async function homeFunction(req, res, next){
-
-        await shoeService.allTheStock()
         try {
-            let results = await shoeService.returnAll()
+            let results = await shoeService.allTheStock()
             res.json({
                 status: 'success',
                 data: results
@@ -12,43 +10,116 @@ module.exports = function (shoeService) {
 
         } catch (err) {
             next(err);
+
         }
     }
 
-    
-    async function addStockFunction(req, res, next){
-        try {
-            await shoeService.addStock(JSON.parse(JSON.stringify(req.body)))
+    async function addingStock(req, res, next){
+        try{
+            let stock = req.body;
+            await shoeService.addStock(stock)
             res.json({
-                status: "success",
+                status: 'success',
+            })
+        }catch(err){
+            res.json({
+                status: "error",
+                error: err.stack
             });
+        }
+    }
 
+    async function addToCart(req, res, next){
+        try{
+            let cart = req.body;
+            await shoeService.addCart(cart)
+            res.json({
+                status: 'success',
+            })
         }
         catch (err) {
             next(err);
         }
     }
 
-    async function filterStock(req, res, next){
-        try {
-            let brand = (req.body.brands)
-            let color = (req.body.colors)
-            let size = (req.body.size)
-
-        if (brand && !color  && !size){
-            await shoeService.filterByBrand(JSON.parse(JSON.stringify(req.body)))
+    async function getCart(req, res, next){
+        try{
+           let results = await shoeService.displayCart();
+           res.json({
+            status: 'success',
+            data: results
+        });
         }
-        else if (!brand && color  && !size){
-        await shoeService.filterByColor(JSON.parse(JSON.stringify(req.body)))
-        }
-
-        } catch (err) {
+        catch (err) {
             next(err);
         }
     }
+
+    async function filteredBrand (req, res, next){
+    try{
+        let brand = req.params.brand;
+        let color = req.params.color;
+        let size = req.params.size;
+
+        let results = await shoeService.filterBrand(brand, color, size)
+        res.json({
+            status: 'success',
+            data: results
+        })
+
+    }
+        catch (err) {
+            next(err);
+        }
+    }
+    async function cancelMyCart(req, res, next){
+        try{
+            let cancel = req.body.cancel;
+            if(cancel){
+                await shoeService.cancelCart()
+            }
+            res.json({
+                status: 'success',
+            })
+
+        }
+            catch (err) {
+                next(err);
+            }
+    }
+
+    async function checkoutMyCart(req, res, next){
+        try{
+            let checkout = req.body.checkout;
+            let cartData = await shoeService.displayCart()
+
+            if(checkout){
+                await shoeService.checkoutCart(cartData)
+            }
+            res.json({
+                status: 'success',
+            })
+
+        }
+            catch (err) {
+                next(err);
+            }
+    }
+
+    /*try{
+
+    }
+    catch (err) {
+        next(err);
+    }*/
+
     return {
         homeFunction,
-        addStockFunction,
-        filterStock
+        filteredBrand,
+        addingStock,
+        addToCart,
+        getCart,
+        cancelMyCart,
+        checkoutMyCart
     }
 }

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- for the shoes in stock -->
+    <script class="shoesTemplate" type="text/x-template">
+        <table style="width:100%">
+            <tr>
+                <th><div class="show_brands"><h3>Brand</h3></div></th>
+                <th><div class="show_color"><h3>Color</h3></div></th>
+                <th><div class="show_size"><h3>Size</h3></div></th>
+                <th><div class="show_price"><h3>Price</h3></div></th>
+                <th><div class="show_quantity"><h3>Quantity</h3></div></th>
+            </tr>
+        {{#each shoeData}}
+            <tr>
+                <td>{{brand}}</td>
+                <td>{{color}}</td>
+                <td>{{size}}</td>
+                <td>R{{price}}</td>
+                <td>{{quantity}}</td>
+                <td><div><img src="{{image}}" class="stock_images"></div></td>
+                <td><button type="button" name="button" class="add_cart" id={{id}}>Add to cart</button></td>
+            </tr>
+        {{/each}}
+    </table>
+    </script>
+    <!-- -->
+    <script class="cartTemplate" type="text/x-template">
+        <table style="width:100%">
+            <tr>
+                <th><div class="show_brands"><h3>Brand</h3></div></th>
+                <th><div class="show_color"><h3>Color</h3></div></th>
+                <th><div class="show_size"><h3>Size</h3></div></th>
+                <th><div class="show_price"><h3>Price</h3></div></th>
+                <th><div class="show_quantity"><h3>Quantity</h3></div></th>
+            </tr>
+        {{#each cartData}}
+            <tr>
+                <td>{{brand}}</td>
+                <td>{{color}}</td>
+                <td>{{size}}</td>
+                <td>R{{price}}</td>
+                <td>{{quantity}}</td>
+                <td><div><img src="{{image}}" class="stock_images"></div></td>
+            </tr>
+        {{/each}}
+    </table>
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="https://github.com/Wiseman930/shoes_api/blob/master/images/BILLY.png?raw=true" alt="no image" class="logo_image">
+        </div>
+    </div>
+    <div class="all_section">
+        <div class="stock_filter_section">
+            <div class="all_add_stock">
+                    <div class="new_stock"><h3>Add New Stock</h3></div>
+                    <div class="add_stock">
+                        <div class="drop1">
+                            <select name="brands" id="brands">
+                                <option value="" style="background-color: #005f73; color: white">Select Brand</option>
+                                <option value=1 style="background-color: #005f73; color: white">Tago</option>
+                                <option value=2 style="background-color: #005f73; color: white">Bellito</option>
+                                <option value=3 style="background-color: #005f73; color: white">Afani</option>
+                                <option value=4 style="background-color: #005f73; color: white">Seruto</option>
+                            </select>
+                        </div>
+                        <div class="drop2">
+                            <select name="colors" id="color">
+                                <option value="" style="background-color: #005f73; color: white">Select Color</option>
+                                <option value=1  style="background-color: #005f73; color: white">Black</option>
+                                <option value=5 style="background-color: #005f73; color: white">White</option>
+                                <option value=3 style="background-color: #005f73; color: white">Blue</option>
+                                <option value=2 style="background-color: #005f73; color: white">Brown</option>
+                                <option value=4 style="background-color: #005f73; color: white">Grey</option>
+                            </select>
+                        </div>
+                        <div class="drop3">
+                            <select name="size" id="size">
+                                <option value="" style="background-color: #005f73; color: white">Select Size</option>
+                                <option value="1" style="background-color: #005f73; color: white">5</option>
+                                <option value="2" style="background-color: #005f73; color: white" >6</option>
+                                <option value="3" style="background-color: #005f73; color: white" >7</option>
+                                <option value="4" style="background-color: #005f73; color: white" >8</option>
+                                <option value="5" style="background-color: #005f73; color: white" >9</option>
+                            </select>
+                        </div>
+                    </div>
+                <div class="add_stock2">
+                    <div class="price_textbox">
+                        <input name="prices" class="addPrice" placeholder="Enter price"
+                        type="number" maxlength="7">
+                    </div>
+                    <div class="quantity_textbox">
+                        <input name="quantities" class="addQuantity" placeholder="Enter quantity"
+                        type="number" maxlength="2">
+                    </div>
+                </div>
+                <div class="update_button">
+                    <button type="button" name="button" class="update_stock" value="">Update</button>
+                </div>
+            </div>
+
+            <div class="all_add_stock">
+                <div class="new_stock"><h3>Filter Stock</h3></div>
+                <div class="filter_stock">
+                    <div class="drop1">
+                        <select name="brands2" id="brands2">
+                                <option value="" style="background-color: #005f73; color: white">Select Brand</option>
+                                <option value=1 style="background-color: #005f73; color: white">Tago</option>
+                                <option value=2 style="background-color: #005f73; color: white">Bellito</option>
+                                <option value=3 style="background-color: #005f73; color: white">Afani</option>
+                                <option value=4 style="background-color: #005f73; color: white">Seruto</option>
+                        </select>
+                    </div>
+                    <div class="drop2">
+                        <select name="colors2" id="color2">
+                                <option value="" style="background-color: #005f73; color: white">Select Color</option>
+                                <option value=1  style="background-color: #005f73; color: white">Black</option>
+                                <option value=5 style="background-color: #005f73; color: white">White</option>
+                                <option value=3 style="background-color: #005f73; color: white">Blue</option>
+                                <option value=2 style="background-color: #005f73; color: white">Brown</option>
+                                <option value=4 style="background-color: #005f73; color: white">Grey</option>
+                        </select>
+                    </div>
+                    <div class="drop3">
+                        <select name="size2" id="size2">
+                                <option value="" style="background-color: #005f73; color: white">Select Size</option>
+                                <option value="1" style="background-color: #005f73; color: white">5</option>
+                                <option value="2" style="background-color: #005f73; color: white" >6</option>
+                                <option value="3" style="background-color: #005f73; color: white" >7</option>
+                                <option value="4" style="background-color: #005f73; color: white" >8</option>
+                                <option value="5" style="background-color: #005f73; color: white" >9</option>
+                        </select>
+                    </div>
+                    <div class="update_button">
+                        <button type="button" name="button" class="filter_button" value="">Filter</button>
+                    </div>
+                </div>
+
+                <div class="shoes">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="cart_section">
+            <div class="new_stock"><h3>CART</h3></div>
+            <div class="cart">
+                <i class="fa badge fa-lg cart_symbol" value=8><h1>&#xf07a;</h1><P class="item_number">1</P></i>
+            </div>
+            <div class="carting">
+
+            </div>
+            <div class="checkout_cancel">
+                <div class="update_button">
+                    <button type="button" name="button" class="checkout_stock" value="checkout">Checkout</button>
+                </div>
+                <div class="update_button">
+                    <button type="button" name="button" class="cancel_stock" value="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src='./client.js'></script>
+</body>
+</html>
