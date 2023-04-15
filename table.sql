@@ -18,6 +18,7 @@ create table stockimages(
     image text not null
 );
 
+
 create table stock(
     id serial not null primary key,
     brand_id int not null,
