@@ -46,9 +46,9 @@ if (process.env.DATABASE_URL && !local) {
 
 const config = {
   connectionString: DATABASE_URL,
- /*ssl: {
+ ssl: {
     rejectUnauthorized: false,
-  }, */
+  }, 
 }
 const db = pgp(config);
 const myShoeFunction = myFunction(db)
