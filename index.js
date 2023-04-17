@@ -48,7 +48,7 @@ const config = {
   connectionString: DATABASE_URL,
  ssl: {
     rejectUnauthorized: false,
-  }, 
+  },
 }
 const db = pgp(config);
 const myShoeFunction = myFunction(db)
@@ -58,7 +58,7 @@ const shoesApi = allShoesAPI(myShoeFunction)
 
 
 //API ROUTES
-app.get('/api/shoes', shoesApi.homeFunction);
+app.get('/', shoesApi.homeFunction);
 app.post('/api/shoes', shoesApi.addingStock);
 app.get('/api/shoes/brand/:brand', shoesApi.filteredBrand);
 app.get('/api/shoes/color/:color', shoesApi.filteredBrand);

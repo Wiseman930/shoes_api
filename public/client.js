@@ -38,7 +38,7 @@ let checkoutButton = document.querySelector('.checkout_stock')
 axios.defaults.baseURL = 'http://localhost:3018';
 // STOCK DATA
 axios
-.get("/api/shoes")
+.get("/")
 .then(result => {
     let shoes = result.data;
     let shoeData = shoes.data;
@@ -49,7 +49,7 @@ axios
 
 function allShoes(){
 axios
-.get("/api/shoes")
+.get("/")
 .then(result => {
     let shoes = result.data;
     let shoeData = shoes.data;
