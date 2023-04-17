@@ -36,7 +36,7 @@ app.use(
     next()
   })
 
-const DATABASE_URL = process.env.DATABASE_URL || "postgresql://postgres:pg1999@localhost:5432/shoe_api";
+const DATABASE_URL = process.env.DATABASE_URL || "postgres://shoecart_database_user:jdeA41jXszEUKNlJiTWHweEqrdaqh0Zl@dpg-cgumrbaut4mdujo3i2kg-a.ohio-postgres.render.com/shoecart_database";
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -46,9 +46,9 @@ if (process.env.DATABASE_URL && !local) {
 
 const config = {
   connectionString: DATABASE_URL,
- /*ssl: {
+ ssl: {
     rejectUnauthorized: false,
-  },*/
+  },
 }
 const db = pgp(config);
 const myShoeFunction = myFunction(db)
