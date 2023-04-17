@@ -35,7 +35,7 @@ let cancelButton = document.querySelector('.cancel_stock')
 let checkoutButton = document.querySelector('.checkout_stock')
 
 
-axios.defaults.baseURL = 'dpg-cgumrbaut4mdujo3i2kg-a.ohio-postgres.render.com';
+axios.defaults.baseURL = 'http://localhost:3018/';
 // STOCK DATA
 axios
 .get("/")
