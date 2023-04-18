@@ -2,7 +2,6 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const app = express();
-const myFunction = require('./shoes')
 const pgp = require("pg-promise")();
 const flash = require("express-flash");
 const session = require("express-session");
@@ -38,22 +37,27 @@ app.use(
 
 const DATABASE_URL = process.env.DATABASE_URL || "postgres://shoecart_database_user:jdeA41jXszEUKNlJiTWHweEqrdaqh0Zl@dpg-cgumrbaut4mdujo3i2kg-a.ohio-postgres.render.com/shoecart_database";
 
+
+
 const config = {
   connectionString: DATABASE_URL,
  ssl: {
     rejectUnauthorized: false,
   },
 }
+const myFunction = require('./shoes')
 const db = pgp(config);
 const myShoeFunction = myFunction(db)
+
 
 const allShoesAPI = require('./api/shoeApi')
 const shoesApi = allShoesAPI(myShoeFunction)
 
 
+
 //API ROUTES
 app.get('/', shoesApi.homeFunction);
-app.post('/api/shoes', shoesApi.addingStock);
+app.post('/', shoesApi.addingStock);
 app.get('/api/shoes/brand/:brand', shoesApi.filteredBrand);
 app.get('/api/shoes/color/:color', shoesApi.filteredBrand);
 app.get('/api/shoes/size/:size', shoesApi.filteredBrand);

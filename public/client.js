@@ -35,13 +35,12 @@ let cancelButton = document.querySelector('.cancel_stock')
 let checkoutButton = document.querySelector('.checkout_stock')
 
 
-axios.defaults.baseURL = 'http://localhost:3018/';
+axios.defaults.baseURL = 'http://localhost:3018';
 // STOCK DATA
 axios
 .get("/")
 .then(result => {
     let shoes = result.data;
-    console.log(shoes)
     let shoeData = shoes.data;
     shoesElem.innerHTML = theShoesTemplate({
        shoeData
@@ -96,7 +95,7 @@ const quantity = addingQuantity.value;
 if(brand && color && size && price && quantity){
 
 axios
-.post("/api/shoes",{
+.post("/",{
     brand_id: brand,
     color_id: color,
     size_id: size,
