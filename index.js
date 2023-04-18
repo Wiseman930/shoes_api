@@ -35,7 +35,7 @@ app.use(
     next()
   })
 
-const DATABASE_URL = process.env.DATABASE_URL || "postgres://shoecart_database_user:jdeA41jXszEUKNlJiTWHweEqrdaqh0Zl@dpg-cgumrbaut4mdujo3i2kg-a.ohio-postgres.render.com/shoecart_database";
+const DATABASE_URL = process.env.DATABASE_URL || "postgres://shoecart_database_user:jdeA41jXszEUKNlJiTWHweEqrdaqh0Zl@dpg-cgumrbaut4mdujo3i2kg-a/shoecart_database";
 
 
 
