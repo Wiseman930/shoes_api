@@ -35,12 +35,13 @@ let cancelButton = document.querySelector('.cancel_stock')
 let checkoutButton = document.querySelector('.checkout_stock')
 
 
-axios.defaults.baseURL = 'https://shoe-api-app.onrender.com/';
+axios.defaults.baseURL = 'http://localhost:3018/';
 // STOCK DATA
 axios
 .get("/")
 .then(result => {
     let shoes = result.data;
+    console.log(shoes)
     let shoeData = shoes.data;
     shoesElem.innerHTML = theShoesTemplate({
        shoeData
